@@ -20,8 +20,14 @@ module API
     route do |r|
 
       r.on 'lists' do
+        r.head do
+          {:ok => 'head'}
+        end
         r.post do
           log.info("lists route hit")
+          parsed_body = r.body.read
+          log.info("incoming body => #{parsed_body}")
+
           {:ok => 'good'}
         end
 
