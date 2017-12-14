@@ -32,6 +32,24 @@ module API
         end
 
       end
+
+      r.on 'card' do
+        r.get do
+          passed_date = r.params['date']
+
+          log.info("passed_date is #{passed_date}")
+          response['Content-Type'] = 'image/png'.freeze
+          dummy = [2,3]
+          sample = dummy.sample
+          root_path = File.join(File.dirname(__FILE__), '..'.freeze, '..'.freeze, 'public/images/'.freeze)
+          log.info("root_path #{root_path}")
+          file = "#{root_path}number-#{sample}.png"
+
+          r.halt response.finish_with_body(File.open(file, 'rb'.freeze))
+
+
+        end
+      end
       
     end
 

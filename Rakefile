@@ -20,15 +20,14 @@ namespace :bootstrap do
     callback_url = "#{callback_host}/trello/lists"
     trello_url = "https://api.trello.com/1/tokens/#{api_token}/webhooks/?key=#{api_key}"
     body_hash = { :callbackURL => callback_url, :idModel => list_id, :description => "webhook"}
-
-    puts "body is  #{body_hash.to_json} "
-
+ 
     result = HTTParty.post(trello_url, :body =>  body_hash.to_json, :headers => {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
 
-    puts "callback POST creation completed result is #{result.inspect}"
-    puts "body is #{result.response.body.to_s}"
+    puts "callback response body is #{result.response.body.to_s}"
     puts "body status is #{result.response.code.to_s}"
-     
+    puts "callback created!" if result.response.code.to_i == 200
+
+
   end
 
 end

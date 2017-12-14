@@ -1,7 +1,7 @@
 require 'rack'
 require 'rack/cors'
 
-use Rack::Static, :urls => ['/public/']
+use Rack::Static, :urls => ['/public/', '/public/images/']
 
 use Rack::Cors do
   allow do
