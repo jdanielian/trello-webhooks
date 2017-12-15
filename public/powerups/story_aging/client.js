@@ -48,7 +48,7 @@ var getBadges = function(t){
 
                         //console.log("inside attachments promise return.");
 
-                        debugPrint(data);
+                        //debugPrint(data);
                         var attachedItems = data;
                         if(attachedItems && attachedItems.length > 0){
                             console.log("doing stuff to attachments");
@@ -61,7 +61,7 @@ var getBadges = function(t){
                                 var date_entered_list = new Date(date_chunk);
                                 console.log("inside attachedItems if block");
                                 //t.remove('card', 'shared', 'date_entered_list');
-                                //t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                                t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 console.log("done removing and setting data");
                             }
 
