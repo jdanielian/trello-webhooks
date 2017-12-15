@@ -18,11 +18,20 @@ Trello.get('/cards/5a1ecaf11221968e51b5c0c3/attachments', success, error);
 
 var Promise = TrelloPowerUp.Promise;
 
+function debugPrint(obj){
+    for (var property in obj){
+        if(obj.hasOwnProperty(property)){
+            console.log(property + ": " + obj[property]);
+        }
+    }
+}
 
 var getBadges = function(t){
     return t.get('card','shared','date_entered_list')
             .then(function(data){
             //console.log('here is shared date in scope: ' + data);
+
+                debugPrint(data);
 
             return [{
                 // dynamic badges can have their function rerun after a set number
@@ -51,9 +60,15 @@ var attachments = function(t){
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
         console.log("I initialized!!");
-        var attachedItems = []; //attachments(t);
-         
+        attachments(t).then(function(data){
 
+            console.log("inside attachments promise return.");
+
+            debugPrint(data);
+
+        });
+         
+        /*
         var existing_list_date = t.get('card','shared','date_entered_list');
         
         if(attachedItems && attachedItems.length > 0){
@@ -65,7 +80,7 @@ TrelloPowerUp.initialize({
             t.set('card', 'shared', 'date_entered_list', date_entered_list);
             console.log("done removing and setting data");
         }
-        
+          */
 
         return getBadges(t);
     }
