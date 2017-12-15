@@ -1,7 +1,10 @@
 require 'rack'
 require 'rack/cors'
 
-use Rack::Static, :urls => ['/public/', '/public/images/']
+use Rack::Static, :urls => ['/public/', '/public/images/'], :header_rules => [
+    [:all, {'Access-Control-Allow-Origin' => '*'}],
+    [:all, {'Access-Control-Allow-Methods' =>  'GET, HEAD'}]
+]
 
 use Rack::Cors do
   allow do
