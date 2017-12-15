@@ -78,8 +78,8 @@ TrelloPowerUp.initialize({
                     var date_chunk = chunks[1];
                     var date_entered_list = new Date(date_chunk);
                     console.log("inside attachedItems if block");
-                    t.remove('card', 'shared', 'date_entered_list');
-                    t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                    //t.remove('card', 'shared', 'date_entered_list');
+                    //t.set('card', 'shared', 'date_entered_list', date_entered_list);
                     console.log("done removing and setting data");
                 }
 
