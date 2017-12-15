@@ -20,9 +20,9 @@ var Promise = TrelloPowerUp.Promise;
 
 function debugPrint(obj){
     for (var property in obj){
-        if(obj.hasOwnProperty(property)){
+        //if(obj.hasOwnProperty(property)){
             console.log(property + ": " + obj[property]);
-        }
+        //}
     }
 }
 
