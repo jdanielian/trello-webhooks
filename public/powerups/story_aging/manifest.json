@@ -6,7 +6,7 @@
   },
   "author": "Jay Danielian",
   "capabilities": [
-    "card-badges"
+    "card-badges", "callback"
   ],
   "connectors": {
     "iframe": {
