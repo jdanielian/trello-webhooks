@@ -43,7 +43,7 @@ var getBadges = function(t){
                     return {
                         text: 'Dynamic ', // + (Math.random() * 100).toFixed(0).toString(),
                         color: null,
-                        refresh: 10 // in seconds
+                        refresh: 360 // in seconds
                     };
                 }
             }];
