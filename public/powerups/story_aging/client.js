@@ -21,8 +21,8 @@ var Promise = TrelloPowerUp.Promise;
 
 var getBadges = function(t){
     return t.get('card','shared','date_entered_list')
-        .then(function(data){
-            console.log('here is shared date in scope: ' + data);
+            .then(function(data){
+            //console.log('here is shared date in scope: ' + data);
 
             return [{
                 // dynamic badges can have their function rerun after a set number
@@ -51,8 +51,8 @@ var attachments = function(t){
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
         console.log("I initialized!!");
-        var attachedItems = attachments(t);
-        console.log(attachedItems);
+        var attachedItems = []; //attachments(t);
+         
 
         var existing_list_date = t.get('card','shared','date_entered_list');
         
@@ -60,8 +60,10 @@ TrelloPowerUp.initialize({
             var chunks = attachedItems[0].url.split("date=");
             var date_chunk = chunks[1];
             var date_entered_list = new Date(date_chunk);
+            console.log("inside attachedItems if block");
             t.remove('card', 'shared', 'date_entered_list');
             t.set('card', 'shared', 'date_entered_list', date_entered_list);
+            console.log("done removing and setting data");
         }
         
 
