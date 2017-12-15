@@ -100,11 +100,12 @@ var getBadges = function(t){
 
                                 workingDays = workingDaysBetweenDates(date_entered_list, new Date());
 
+                                console.log("done removing and setting data");
                                 text = "Age: " + workingDays.toString();
-
+                                return { text: text, color:null, refresh: 30};
                                 //t.remove('card', 'shared', 'date_entered_list');
                                 //t.set('card', 'shared', 'date_entered_list', date_entered_list);
-                                console.log("done removing and setting data");
+                                
                             }
 
 
