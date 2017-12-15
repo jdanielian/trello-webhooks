@@ -10,7 +10,7 @@
   ],
   "connectors": {
     "iframe": {
-      "url": "./public/powerups/story_aging/index.html"
+      "url": "./index.html"
     }
   }
 }
