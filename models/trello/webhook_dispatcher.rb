@@ -63,8 +63,8 @@ module Trello
 
     def new_card_added_to_wip_list?
       list_id = :not_found
-      if body_hash[:action][:type] == 'createCard' &&  body_hash[:action][:data] && body_hash[:action][:data][:list] && body_hash[:action][:action][:data][:list][:id]
-        list_id = body_hash[:action][:action][:data][:list][:id]
+      if body_hash[:action][:type] == 'createCard' &&  body_hash[:action][:data] && body_hash[:action][:data][:list] && body_hash[:action][:data][:list][:id]
+        list_id = body_hash[:action][:data][:list][:id]
       end
 
       TRELLO_LIST_IDS.include?(list_id)
