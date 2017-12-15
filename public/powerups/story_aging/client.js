@@ -30,11 +30,13 @@ var getBadges = function(t){
                 dynamic: function(){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
                     return {
-                        title: 'Detail Badge', // for detail badges only
                         text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
                         refresh: 10 // in seconds
                     };
                 }
+            }, {
+                text: 'Custom',
+                color: null
             }];
         });
 };
