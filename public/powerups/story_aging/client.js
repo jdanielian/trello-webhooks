@@ -31,6 +31,7 @@ var getBadges = function(t){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
                     return {
                         text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
+                        color: null,
                         refresh: 10 // in seconds
                     };
                 }
