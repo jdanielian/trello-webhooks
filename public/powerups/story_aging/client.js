@@ -66,4 +66,4 @@ TrelloPowerUp.initialize({
 
         return getBadges(t);
     }
-};
+});
