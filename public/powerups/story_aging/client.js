@@ -92,7 +92,7 @@ var getBadges = function(t){
                                 console.log("done removing and setting data");
                                 text = "Age: " + workingDays.toString();
                                 console.log("working days: " + workingDays.toString());
-                                t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                                //t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 return { text: text, color: null, refresh: 360};
                             }
                             //t.remove('card', 'shared', 'date_entered_list');
