@@ -1,4 +1,22 @@
-// want to have number of days a story has been in a particular status
+// want to have number of days a story has been in a particular status/*
+
+/*
+this is working in sandbox
+var success = function(successMsg) {
+  asyncOutput(successMsg);
+};
+
+var error = function(errorMsg) {
+  asyncOutput(errorMsg);
+};
+
+Trello.cards.get('5a1ecaf11221968e51b5c0c3', success, error);
+
+Trello.get('/cards/5a1ecaf11221968e51b5c0c3/attachments', success, error);
+
+ */
+
+
 
 var getBadges = function(t){
     return t.get('card','shared','date_entered_list')
@@ -31,14 +49,14 @@ var attachments = function(t){
 
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
-        attachments = attachments(t);
-        console.log(attachments);
+        var attachedItems = attachments(t);
+        console.log(attachedItems);
         
         var date_chunk;
         var existing_list_date = t.get('card','shared','date_entered_list');
         
-        if(attachments && attachments.length > 0){
-            var chunks = attachments[0].url.split("date=");
+        if(attachedItems && attachedItems.length > 0){
+            var chunks = attachedItems[0].url.split("date=");
             date_chunk = chunks[1];
             var date_entered_list = new Date(date_chunk);
             t.remove('card', 'shared', 'date_entered_list');
