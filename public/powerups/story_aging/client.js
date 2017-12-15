@@ -51,13 +51,12 @@ TrelloPowerUp.initialize({
     'card-badges': function(t, options){
         var attachedItems = attachments(t);
         console.log(attachedItems);
-        
-        var date_chunk;
+
         var existing_list_date = t.get('card','shared','date_entered_list');
         
         if(attachedItems && attachedItems.length > 0){
             var chunks = attachedItems[0].url.split("date=");
-            date_chunk = chunks[1];
+            var date_chunk = chunks[1];
             var date_entered_list = new Date(date_chunk);
             t.remove('card', 'shared', 'date_entered_list');
             t.set('card', 'shared', 'date_entered_list', date_entered_list);
