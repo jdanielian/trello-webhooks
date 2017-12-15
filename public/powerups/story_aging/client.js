@@ -103,7 +103,7 @@ var getBadges = function(t){
                                 text = "Age: " + workingDays.toString();
 
                                 //t.remove('card', 'shared', 'date_entered_list');
-                                t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                                //t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 console.log("done removing and setting data");
                             }
 
