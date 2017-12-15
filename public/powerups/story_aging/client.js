@@ -50,6 +50,7 @@ var attachments = function(t){
 
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
+        console.log("I initialized!!");
         var attachedItems = attachments(t);
         console.log(attachedItems);
 
