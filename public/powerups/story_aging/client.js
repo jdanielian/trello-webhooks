@@ -90,10 +90,8 @@ var getBadges = function(t){
                         if(attachedItems && attachedItems.length > 0){
                             console.log("doing stuff to attachments");
 
-                            //var existing_list_date = t.get('card','shared','date_entered_list');
-
-                            if(attachedItems && attachedItems.length > 0){
-                                var chunks = attachedItems[0].url.split("date=");
+                            var chunks = attachedItems[0].url.split("date=");
+                            if(chunks.length === 2){
                                 var date_chunk = chunks[1];
                                 var date_entered_list = new Date(date_chunk);
                                 console.log("inside attachedItems if block");
@@ -104,12 +102,9 @@ var getBadges = function(t){
                                 text = "Age: " + workingDays.toString();
                                 console.log("working days: " + workingDays.toString());
                                 return { text: text, color: null, refresh: 360};
-                                //t.remove('card', 'shared', 'date_entered_list');
-                                //t.set('card', 'shared', 'date_entered_list', date_entered_list);
-                                
                             }
-
-
+                            //t.remove('card', 'shared', 'date_entered_list');
+                            //t.set('card', 'shared', 'date_entered_list', date_entered_list);
                         }
 
                         return {
