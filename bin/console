@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "irb"
+require "irb/completion"
+require "bundler/setup"
+Bundler.require
+
+#$: << "./"
+
+ENV["RACK_ENV"] = ARGV[0] ||= 'development'
+
+ARGV.clear
+
+require 'logger'
+require_relative '../app'
+
+
+puts "*********************************************"
+puts "* starting local console session."
+puts "* RACK_ENV is #{ENV["RACK_ENV"]}"
+puts "**********************************************"
+
+IRB.start

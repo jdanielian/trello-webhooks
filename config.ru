@@ -26,4 +26,5 @@ PATH_SPLITTER  = '/'.freeze
 
 SimpleLogger.logger.info("server starting up")
 
+
 run(App.freeze.app)

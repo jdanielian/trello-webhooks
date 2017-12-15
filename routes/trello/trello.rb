@@ -1,6 +1,7 @@
 module API
   class Trello < Roda
     extend ::Mixins::DefaultHeaders
+    include ::Trello
 
     plugin :default_headers, append_headers
     plugin :json,  classes: [Array, Hash]
@@ -25,8 +26,10 @@ module API
         end
         r.post do
           log.info("lists route hit")
-          parsed_body = r.body.read
-          log.info("incoming body => #{parsed_body}")
+          post_body = r.body.read
+
+          dispatcher = Trello::WebHookDispatcher.new(post_body)
+          dispatcher.execute
 
           {:ok => 'good'}
         end

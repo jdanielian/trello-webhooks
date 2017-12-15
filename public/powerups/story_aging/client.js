@@ -66,6 +66,28 @@ var attachments = function(t){
         });
 };
 
+/*var embeddedData = function(t){
+    return attachments(t).then(function(attachedItems) {
+
+        if(attachedItems && attachedItems.length > 0){
+            var chunks = attachedItems[0].url.split("date=");
+            if(chunks.length === 2){
+                var date_chunk = chunks[1];
+                var date_entered_list = new Date(date_chunk);
+                console.log("inside embeddedData if block");
+
+                var workingDays = workingDaysBetweenDates(date_entered_list, new Date());
+
+                console.log("working days: " + workingDays.toString());
+                t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                
+            }
+        }
+
+    });
+
+}; */
+
 var getBadges = function(t){
 
             return [{
