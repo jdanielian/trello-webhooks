@@ -115,7 +115,7 @@ var getBadges = function(t){
                         return {
                             text: text,
                             color: null,
-                            refresh: 30  // in seconds
+                            refresh: 360  // in seconds
                         };
 
 
