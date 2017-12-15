@@ -16,6 +16,7 @@ Trello.get('/cards/5a1ecaf11221968e51b5c0c3/attachments', success, error);
 
  */
 
+var Promise = TrelloPowerUp.Promise;
 
 
 var getBadges = function(t){
