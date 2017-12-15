@@ -2,21 +2,15 @@ require_relative './command_base'
 
 
 module Trello
-  class AddDateToCardCommand < CommandBase
+  class RemoveDateFromCardCommand < CommandBase
 
     attr :card_id
     attr :source_date
 
-    # peaceful-savannah-58277.herokuapp.com/
 
-    #URL_PREFIX = 'https://trello/card?date='
-
-    def initialize(card_id, source_date, opts = {})
+    def initialize(card_id, source_date)
       @card_id = card_id
       @source_date = source_date
-
-
-
     end
 
     def execute
@@ -29,18 +23,10 @@ module Trello
         attachments_to_remove.each{|attachment| card.remove_attachment(attachment) }
       end
 
-      card.add_attachment(get_url)
-      logger.info("added attachments back on card_id #{card_id}")
     end
 
     private
 
-    def get_url
-      short_date = @source_date #.strftime('%Y-%m-%d')
-
-      "#{URL_PREFIX}#{short_date}"
-
-    end
 
 
 

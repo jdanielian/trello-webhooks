@@ -33,10 +33,19 @@ module Trello
 
       @commands = []
 
-      if move_from_list? && in_wip_list?
+      if move_from_list?
         card_id = get_card_id
         source_date = get_source_date
-        
+
+        if in_wip_list?
+          @commands << AddDateToCardCommand.new(card_id, source_date)
+        else
+          @commands << RemoveDateFromCardCommand.new(card_id, source_date)
+        end
+      elsif new_card_added_to_wip_list?
+        card_id = get_card_id
+        source_date = get_source_date
+
         @commands << AddDateToCardCommand.new(card_id, source_date)
       end
 
@@ -49,6 +58,16 @@ module Trello
       else
         false
       end
+
+    end
+
+    def new_card_added_to_wip_list?
+      list_id = :not_found
+      if body_hash[:action][:type] == 'createCard' &&  body_hash[:action][:data] && body_hash[:action][:data][:list] && body_hash[:action][:action][:data][:list][:id]
+        list_id =  body_hash[:action][:action][:data][:list][:id]
+      end
+
+      TRELLO_LIST_IDS.include?(list_id)
 
     end
 
