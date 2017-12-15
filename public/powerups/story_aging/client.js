@@ -21,7 +21,8 @@ var Promise = TrelloPowerUp.Promise;
 function debugPrint(obj){
     for (var property in obj){
         //if(obj.hasOwnProperty(property)){
-            console.log(property + ": " + obj[property]);
+        console.log(JSON.stringify(data));
+        //console.log(property + ": " + obj[property]);
         //}
     }
 }
