@@ -37,11 +37,7 @@ var attachments = function(t){
 };
 
 var getBadges = function(t){
-    return t.get('card','shared','date_entered_list')
-            .then(function(data){
-            //console.log('here is shared date in scope: ' + data);
 
-                debugPrint(data);
 
             return [{
                 // dynamic badges can have their function rerun after a set number
@@ -50,7 +46,7 @@ var getBadges = function(t){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
                     attachments(t).then(function(data){
 
-                        console.log("inside attachments promise return.");
+                        //console.log("inside attachments promise return.");
 
                         debugPrint(data);
                         var attachedItems = data;
@@ -75,17 +71,14 @@ var getBadges = function(t){
 
                     });
 
-
-
-
                     return {
                         text: 'Dynamic ', // + (Math.random() * 100).toFixed(0).toString(),
                         color: null,
-                        refresh: 10 // in seconds
+                        refresh: 30  // in seconds
                     };
                 }
             }];
-        });
+
 };
 
 
