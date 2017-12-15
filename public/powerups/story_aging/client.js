@@ -79,7 +79,7 @@ var getBadges = function(t){
                 // of seconds defined by refresh. Minimum of 10 seconds.
                 dynamic: function(){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
-                    var text = 'dyn promise';
+                    var text = null;
                     return attachments(t).then(function(data){
 
                         //console.log("inside attachments promise return.");
