@@ -62,7 +62,7 @@ var attachments = function(t){
     return t.card('attachments')
         .get('attachments')
         .filter(function(attachment){
-            return attachment.url.indexOf('peaceful-savannah-58277') > 0;
+            return attachment.url.indexOf('card?date=') > 0;
         });
 };
 

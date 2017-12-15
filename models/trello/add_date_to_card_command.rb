@@ -7,7 +7,9 @@ module Trello
     attr :card_id
     attr :source_date
 
-    URL_PREFIX = 'https://peaceful-savannah-58277.herokuapp.com/trello/card?date='
+    # peaceful-savannah-58277.herokuapp.com/
+
+    URL_PREFIX = 'https://trello/card?date='
 
     def initialize(card_id, source_date)
       @card_id = card_id
