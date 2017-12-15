@@ -80,7 +80,7 @@ var getBadges = function(t){
                 dynamic: function(){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
                     var text = 'dyn promise';
-                    attachments(t).then(function(data){
+                    return attachments(t).then(function(data){
 
                         //console.log("inside attachments promise return.");
 
@@ -98,11 +98,12 @@ var getBadges = function(t){
                                 var date_entered_list = new Date(date_chunk);
                                 console.log("inside attachedItems if block");
 
-                                workingDays = workingDaysBetweenDates(date_entered_list, new Date());
+                                var workingDays = workingDaysBetweenDates(date_entered_list, new Date());
 
                                 console.log("done removing and setting data");
                                 text = "Age: " + workingDays.toString();
-                                return { text: text, color:null, refresh: 30};
+                                console.log("working days: " + workingDays.toString());
+                                return { text: text, color: null, refresh: 30};
                                 //t.remove('card', 'shared', 'date_entered_list');
                                 //t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 
@@ -111,16 +112,16 @@ var getBadges = function(t){
 
                         }
 
-
+                        return {
+                            text: text,
+                            color: null,
+                            refresh: 30  // in seconds
+                        };
 
 
                     });
 
-                    return {
-                        text: text,
-                        color: null,
-                        refresh: 30  // in seconds
-                    };
+
                 }
             }];
 
