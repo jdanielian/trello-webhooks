@@ -19,12 +19,13 @@ Trello.get('/cards/5a1ecaf11221968e51b5c0c3/attachments', success, error);
 var Promise = TrelloPowerUp.Promise;
 
 function debugPrint(obj){
-    for (var property in obj){
+    console.log(JSON.stringify(obj));
+    //for (var property in obj){
         //if(obj.hasOwnProperty(property)){
-        console.log(JSON.stringify(data));
+
         //console.log(property + ": " + obj[property]);
         //}
-    }
+    //}
 }
 
 var getBadges = function(t){
