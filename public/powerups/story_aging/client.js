@@ -28,6 +28,42 @@ function debugPrint(obj){
     //}
 }
 
+function workingDaysBetweenDates(startDate, endDate) {
+
+    // Validate input
+    if (endDate < startDate)
+        return 0;
+
+    // Calculate days between dates
+    var millisecondsPerDay = 86400 * 1000; // Day in milliseconds
+    startDate.setHours(0,0,0,1);  // Start just after midnight
+    endDate.setHours(23,59,59,999);  // End just before midnight
+    var diff = endDate - startDate;  // Milliseconds between datetime objects
+    var days = Math.ceil(diff / millisecondsPerDay);
+
+    // Subtract two weekend days for every week in between
+    var weeks = Math.floor(days / 7);
+    days = days - (weeks * 2);
+
+    // Handle special cases
+    var startDay = startDate.getDay();
+    var endDay = endDate.getDay();
+
+    // Remove weekend not previously removed.
+    if (startDay - endDay > 1)
+        days = days - 2;
+
+    // Remove start day if span starts on Sunday but ends before Saturday
+    if (startDay == 0 && endDay != 6)
+        days = days - 1
+
+    // Remove end day if span ends on Saturday but starts after Sunday
+    if (endDay == 6 && startDay != 0)
+        days = days - 1
+
+    return days;
+}
+
 var attachments = function(t){
     return t.card('attachments')
         .get('attachments')
@@ -37,7 +73,6 @@ var attachments = function(t){
 };
 
 var getBadges = function(t){
-
 
             return [{
                 // dynamic badges can have their function rerun after a set number
@@ -50,6 +85,7 @@ var getBadges = function(t){
 
                         //debugPrint(data);
                         var attachedItems = data;
+                        var text = 'dyn promise';
                         if(attachedItems && attachedItems.length > 0){
                             console.log("doing stuff to attachments");
 
@@ -60,6 +96,11 @@ var getBadges = function(t){
                                 var date_chunk = chunks[1];
                                 var date_entered_list = new Date(date_chunk);
                                 console.log("inside attachedItems if block");
+
+                                workingDays = workingDaysBetweenDates(date_entered_list, new Date());
+
+                                text = "Age: " + workingDays.toString();
+
                                 //t.remove('card', 'shared', 'date_entered_list');
                                 t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 console.log("done removing and setting data");
@@ -68,14 +109,16 @@ var getBadges = function(t){
 
                         }
 
+                        return {
+                            text: text, 
+                            color: null,
+                            refresh: 30  // in seconds
+                        };
+
 
                     });
 
-                    return {
-                        text: 'Dynamic ', // + (Math.random() * 100).toFixed(0).toString(),
-                        color: null,
-                        refresh: 30  // in seconds
-                    };
+
                 }
             }];
 
