@@ -67,22 +67,29 @@ TrelloPowerUp.initialize({
             console.log("inside attachments promise return.");
 
             debugPrint(data);
+            var attachedItems = data;
+            if(attachedItems && attachedItems.length > 0){
+                console.log("doing stuff to attachments");
+
+                //var existing_list_date = t.get('card','shared','date_entered_list');
+
+                if(attachedItems && attachedItems.length > 0){
+                    var chunks = attachedItems[0].url.split("date=");
+                    var date_chunk = chunks[1];
+                    var date_entered_list = new Date(date_chunk);
+                    console.log("inside attachedItems if block");
+                    t.remove('card', 'shared', 'date_entered_list');
+                    t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                    console.log("done removing and setting data");
+                }
+
+
+            }
+
 
         });
          
-        /*
-        var existing_list_date = t.get('card','shared','date_entered_list');
-        
-        if(attachedItems && attachedItems.length > 0){
-            var chunks = attachedItems[0].url.split("date=");
-            var date_chunk = chunks[1];
-            var date_entered_list = new Date(date_chunk);
-            console.log("inside attachedItems if block");
-            t.remove('card', 'shared', 'date_entered_list');
-            t.set('card', 'shared', 'date_entered_list', date_entered_list);
-            console.log("done removing and setting data");
-        }
-          */
+
 
         return getBadges(t);
     }
