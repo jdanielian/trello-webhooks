@@ -28,6 +28,14 @@ function debugPrint(obj){
     //}
 }
 
+var attachments = function(t){
+    return t.card('attachments')
+        .get('attachments')
+        .filter(function(attachment){
+            return attachment.url.indexOf('peaceful-savannah-58277') > 0;
+        });
+};
+
 var getBadges = function(t){
     return t.get('card','shared','date_entered_list')
             .then(function(data){
@@ -40,56 +48,52 @@ var getBadges = function(t){
                 // of seconds defined by refresh. Minimum of 10 seconds.
                 dynamic: function(){
                     // we could also return a Promise that resolves to this as well if we needed to do something async first
+                    attachments(t).then(function(data){
+
+                        console.log("inside attachments promise return.");
+
+                        debugPrint(data);
+                        var attachedItems = data;
+                        if(attachedItems && attachedItems.length > 0){
+                            console.log("doing stuff to attachments");
+
+                            //var existing_list_date = t.get('card','shared','date_entered_list');
+
+                            if(attachedItems && attachedItems.length > 0){
+                                var chunks = attachedItems[0].url.split("date=");
+                                var date_chunk = chunks[1];
+                                var date_entered_list = new Date(date_chunk);
+                                console.log("inside attachedItems if block");
+                                //t.remove('card', 'shared', 'date_entered_list');
+                                //t.set('card', 'shared', 'date_entered_list', date_entered_list);
+                                console.log("done removing and setting data");
+                            }
+
+
+                        }
+
+
+                    });
+
+
+
+
                     return {
                         text: 'Dynamic ', // + (Math.random() * 100).toFixed(0).toString(),
                         color: null,
-                        refresh: 360 // in seconds
+                        refresh: 10 // in seconds
                     };
                 }
             }];
         });
 };
 
-var attachments = function(t){
-    return t.card('attachments')
-        .get('attachments')
-        .filter(function(attachment){
-            return attachment.url.indexOf('peaceful-savannah-58277') > 0;
-        });
-};
+
 
 
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
         console.log("I initialized!!");
-        attachments(t).then(function(data){
-
-            console.log("inside attachments promise return.");
-
-            debugPrint(data);
-            var attachedItems = data;
-            if(attachedItems && attachedItems.length > 0){
-                console.log("doing stuff to attachments");
-
-                //var existing_list_date = t.get('card','shared','date_entered_list');
-
-                if(attachedItems && attachedItems.length > 0){
-                    var chunks = attachedItems[0].url.split("date=");
-                    var date_chunk = chunks[1];
-                    var date_entered_list = new Date(date_chunk);
-                    console.log("inside attachedItems if block");
-                    //t.remove('card', 'shared', 'date_entered_list');
-                    //t.set('card', 'shared', 'date_entered_list', date_entered_list);
-                    console.log("done removing and setting data");
-                }
-
-
-            }
-
-
-        });
-         
-
 
         return getBadges(t);
     }
