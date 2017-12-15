@@ -20,12 +20,6 @@ var Promise = TrelloPowerUp.Promise;
 
 function debugPrint(obj){
     console.log(JSON.stringify(obj));
-    //for (var property in obj){
-        //if(obj.hasOwnProperty(property)){
-
-        //console.log(property + ": " + obj[property]);
-        //}
-    //}
 }
 
 function workingDaysBetweenDates(startDate, endDate) {
@@ -82,9 +76,6 @@ var getBadges = function(t){
                     var text = null;
                     return attachments(t).then(function(data){
 
-                        //console.log("inside attachments promise return.");
-
-                        //debugPrint(data);
                         var attachedItems = data;
 
                         if(attachedItems && attachedItems.length > 0){
@@ -101,6 +92,7 @@ var getBadges = function(t){
                                 console.log("done removing and setting data");
                                 text = "Age: " + workingDays.toString();
                                 console.log("working days: " + workingDays.toString());
+                                t.set('card', 'shared', 'date_entered_list', date_entered_list);
                                 return { text: text, color: null, refresh: 360};
                             }
                             //t.remove('card', 'shared', 'date_entered_list');
@@ -127,8 +119,6 @@ var getBadges = function(t){
 
 TrelloPowerUp.initialize({
     'card-badges': function(t, options){
-        console.log("I initialized!!");
-
         return getBadges(t);
     }
 });
